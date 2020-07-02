@@ -11,6 +11,7 @@ public class SocketServerHandler extends ChannelInboundHandlerAdapter {
 
     private static final ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
+
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         System.out.println("handlerAdded of [SERVER]");
@@ -19,7 +20,9 @@ public class SocketServerHandler extends ChannelInboundHandlerAdapter {
             //사용자가 추가되었을 때 기존 사용자에게 알림
             channel.write("[SERVER] - " + incoming.remoteAddress() + "has joined!\n");
         }
+        System.out.println("Channel ID : " + incoming.id());
         channelGroup.add(incoming);
+
     }
 
     @Override
@@ -47,7 +50,7 @@ public class SocketServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         String message = null;
-        message = (String)msg;
+        message = msg.toString();
         System.out.println("channelRead of [SERVER]" +  message);
         Channel incoming = ctx.channel();
         for (Channel channel : channelGroup) {

@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.netty:netty-all:4.1.50.FInal'
+
     compile group: 'io.netty', name: 'netty-all', version: '4.1.50.Final'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
