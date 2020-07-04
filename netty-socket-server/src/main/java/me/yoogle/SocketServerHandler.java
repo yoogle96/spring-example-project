@@ -1,5 +1,6 @@
 package me.yoogle;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -46,8 +47,10 @@ public class SocketServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+
+
         String message = null;
-        message = (String)msg;
+        message = ((ByteBuf)msg).toString();
         System.out.println("channelRead of [SERVER]" +  message);
         Channel incoming = ctx.channel();
         for (Channel channel : channelGroup) {

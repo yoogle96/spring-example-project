@@ -26,7 +26,7 @@ public class SocketServer {
                     pipe.addLast(new SocketServerHandler());
                 }
             });
-        serverBootstrap.bind(8888).sync().channel().closeFuture().sync();
+        serverBootstrap.bind(9999).sync().channel().closeFuture().sync();
 
         } catch(Exception e) {
             // TODO
